@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { ReactElement } from 'react';
 import {useForm} from 'react-hook-form';
 
@@ -14,7 +15,7 @@ export default function CreateGoal({}: Props): ReactElement {
     const {register, handleSubmit} = useForm<Goal>();
 
     const showFormValues = (formValues: Goal) => {
-        console.log(formValues);
+        axios.post(`https://localhost:44383/api/Goal/create`, formValues);
     }
 
     return (

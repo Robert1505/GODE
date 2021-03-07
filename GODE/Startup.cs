@@ -1,8 +1,12 @@
+using GODE.Business.Managers;
+using GODE.DataAccess.Context;
+using GODE.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,11 +27,17 @@ namespace GODE
         {
             services.AddControllersWithViews();
 
+            services.AddDbContext<GODEDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("SQLServer")));
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<IGoalRepository, GoalRepository>();
+            services.AddScoped<IGoalManager, GoalManager>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,14 +4,16 @@ using GODE.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GODE.DataAccess.Migrations
 {
     [DbContext(typeof(GODEDbContext))]
-    partial class GODEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314090953_Tasks")]
+    partial class Tasks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,9 +47,6 @@ namespace GODE.DataAccess.Migrations
                     b.Property<int>("EstimatedTime")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("GoalId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -56,25 +55,7 @@ namespace GODE.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GoalId");
-
                     b.ToTable("Tasks");
-                });
-
-            modelBuilder.Entity("GODE.DataAccess.Entities.Mission", b =>
-                {
-                    b.HasOne("GODE.DataAccess.Entities.Goal", "Goal")
-                        .WithMany("Tasks")
-                        .HasForeignKey("GoalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Goal");
-                });
-
-            modelBuilder.Entity("GODE.DataAccess.Entities.Goal", b =>
-                {
-                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

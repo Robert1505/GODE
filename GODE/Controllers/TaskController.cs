@@ -11,26 +11,24 @@ namespace GODE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GoalController : ControllerBase
+    public class TaskController : ControllerBase
     {
-        private readonly IGoalManager _goalManager;
-        public GoalController(IGoalManager goalManager)
+        private readonly ITaskManager _taskManager;
+        public TaskController(ITaskManager taskManager)
         {
-            _goalManager = goalManager;
+            _taskManager = taskManager;
         }
-
         [HttpPost]
-        [Route("create")]
-        public IActionResult CreateGoal(Goal goal)
+        [Route ("create")]
+        public IActionResult CreateTask(Mission task)
         {
-            return Ok(_goalManager.CreateGoal(goal));
+            return Ok(_taskManager.CreateTask(task));
         }
-
         [HttpGet]
         [Route("get")]
-        public IActionResult GetGoals()
+        public IActionResult GetTask()
         {
-            return Ok(_goalManager.GetGoals());
+            return Ok(_taskManager.GetTask());
         }
     }
 }

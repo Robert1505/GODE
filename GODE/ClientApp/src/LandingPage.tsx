@@ -1,40 +1,42 @@
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
+import Background from './assets/GODE-landingPage.png';
 import NavMenu from './components/LandingPageComponents/NavMenu';
+import Title from './components/LandingPageComponents/Title';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-          backgroundColor: "#080201"
+          backgroundColor: "#080201",
+        },
+        background: {
+          maxHeight: '100vh',
+          minHeight: '100vh',
+          minWidth: '100vw',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          display: 'flex'
+        },
+        nav: {
+          position: 'absolute',
+          zIndex: 99,
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',
         },
         title: {
-          fontSize: "70px",
-          color: "#F08700",
-          fontFamily: 'RocknRoll',
-          textAlign: 'center',
-          paddingBottom: '70px',
-          paddingTop: '100px'
-        },
-        subtitle:{
-          fontSize: '30px',
-          fontFamily: "Arimo",
-          color: "#F08700",
-          margin: '0px 100px',
-          textAlign: 'center'
-        },
-        text: {
-          fontSize: '15px',
-          fontFamily: "Arimo",
-          color: "#F08700",
-          margin: '100px 100px',
-          textAlign: 'center'
+          position: 'absolute',
+          zIndex: 99,
+          left: '0'        
         }
     }));
+
 interface Props{
 
 }
-
 
 export default function Home({}: Props): ReactElement {
 
@@ -42,15 +44,14 @@ export default function Home({}: Props): ReactElement {
 
   return (
     <div className={classes.root}>
-        <NavMenu />
-        <div className = {classes.title}>
-           GODE
-        </div>
-        <div className = {classes.subtitle}>
-          GODE is an application where you can destroy your goals! Set your goals, set your time and try to beat that time!
-        </div>
-        <div className = {classes.text}>
-          Thank you for choosing GODE!
+        <div className = {classes.background}>
+          <div className = {classes.nav}>
+            <NavMenu />
+          </div>
+          <img src = {Background} alt = ""/>
+          <div className = {classes.title}>
+            <Title />
+          </div>
         </div>
     </div>
   )

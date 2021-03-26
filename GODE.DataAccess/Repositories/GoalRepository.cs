@@ -1,5 +1,6 @@
 ﻿using GODE.DataAccess.Context;
 using GODE.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,8 @@ namespace GODE.DataAccess.Repositories
 
         public List<Goal> GetGoals()
         {
-            return _context.Goals.ToList();
+
+            return _context.Goals.Include(x => x.Tasks).ToList();
         }
 
         public Goal UpdateGoal(Goal goal)

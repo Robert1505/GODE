@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router';
 import Home from './LandingPage';
 import './custom.css'
@@ -9,6 +9,10 @@ import Page404 from './Page404';
 import DailySummary from './DailySummaryPage';
 import WeeklySummary from './WeeklySummaryPage';
 import Goals from './Goals';
+
+interface Props {
+    
+}
 
 export default function App({}: Props): ReactElement {
   return(

@@ -25,9 +25,14 @@ namespace GODE
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
+            //services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<GODEDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("SQLServer")));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "GODE", Version = "v1" });
+            });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -37,6 +42,10 @@ namespace GODE
 
             services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IGoalManager, GoalManager>();
+
+            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<ITaskManager, TaskManager>();
+
 
         }
 
@@ -53,6 +62,12 @@ namespace GODE
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "GODE");
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

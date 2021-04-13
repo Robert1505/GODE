@@ -5,4 +5,4 @@ export interface Task {
     estimatedTime: number;
     progress: number;
     goalId: string
-}
+} 

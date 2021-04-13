@@ -1,23 +1,24 @@
 import React, { ReactElement } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            background: '#000000'
+            marginLeft: '100px'
         },
         title: {
             fontSize: '130px',
             color: 'white',
             fontFamily: 'Poppins',
-            fontWeight: 800
+            fontWeight: 800,
         },
         subtitle: {
             fontSize: '28px',
             color: '#91eee1',
             fontFamily: 'Poppins',
             fontWeight: 500
-        }
+        },
     }));
 
 interface Props {

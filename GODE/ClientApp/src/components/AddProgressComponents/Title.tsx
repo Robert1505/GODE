@@ -27,7 +27,7 @@ export default function Title({}: Props): ReactElement {
   return (
     <div className={classes.root}>
       <div className={classes.title}>
-        Write your goals down below and press the submit button
+        Select your task and write it's progress
       </div>
     </div>
   );

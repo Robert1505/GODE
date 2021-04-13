@@ -9,6 +9,7 @@ import Page404 from './Page404';
 import DailySummary from './DailySummaryPage';
 import WeeklySummary from './WeeklySummaryPage';
 import Goals from './Goals';
+import AddProgressPage from './AddProgressPage';
 
 interface Props {
     
@@ -26,6 +27,9 @@ export default function App({}: Props): ReactElement {
         </Route>
         <Route path = "/createTask" exact>
           <CreateTaskPage />
+        </Route>
+        <Route path = "/addProgress" exact>
+          <AddProgressPage />
         </Route>
         <Route path = "/goals" exact>
           <Goals />

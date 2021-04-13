@@ -1,4 +1,5 @@
 ﻿using GODE.Business.Managers;
+using GODE.Controllers.Models;
 using GODE.DataAccess.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,5 +31,18 @@ namespace GODE.Controllers
         {
             return Ok(_taskManager.GetTask());
         }
+        [HttpPost]
+        [Route("addProgress")]
+        public IActionResult AddProgress(TaskProgressModel model)
+        {
+            return Ok(_taskManager.AddProgress(model.TaskId, model.Minutes));
+        }
+        [HttpPost]
+        [Route("markAsCompleted/{TaskId}")]
+        public IActionResult MarkAsCompleted(Guid TaskId)
+        {
+            return Ok(_taskManager.MarkAsCompleted(TaskId));
+        }
+
     }
 }

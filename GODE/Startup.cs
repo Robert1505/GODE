@@ -40,13 +40,16 @@ namespace GODE
                 configuration.RootPath = "ClientApp/build";
             });
 
+            services.AddScoped<IProgressOnDateRepository, ProgressOnDateRepository>();
+            services.AddScoped<IProgressOnDateManager, ProgressOnDateManager>();
+
             services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IGoalManager, GoalManager>();
 
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ITaskManager, TaskManager>();
 
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

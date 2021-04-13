@@ -4,14 +4,16 @@ using GODE.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GODE.DataAccess.Migrations
 {
     [DbContext(typeof(GODEDbContext))]
-    partial class GODEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210409132137_ProgressOnDate")]
+    partial class ProgressOnDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,9 +74,6 @@ namespace GODE.DataAccess.Migrations
 
                     b.Property<int>("Minutes")
                         .HasColumnType("int");
-
-                    b.Property<string>("ShortDate")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

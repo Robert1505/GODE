@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         button:{
             fontFamily: 'Arimo',
-            background:"#F08700",
+            background:"#00b2ff",
             margin:"auto",
             fontSize:"11px",
             color:"#fff",
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
             padding:"2px 25px",
             marginRight: '15px',
             '&:hover':{
-                background: '#ED254E',
+                background: '#0D00FF',
             },
         },
         container:{
@@ -67,6 +67,9 @@ export default function NavBar({}: Props): ReactElement {
                             </Link>
                             <Link to = '/createGoal' style={{ textDecoration: 'none' }}>
                                 <Button color="inherit" className={classes.button}>Create Goal</Button>
+                            </Link>
+                            <Link to = '/addProgress' style={{ textDecoration: 'none' }}>
+                                <Button color="inherit" className={classes.button}>Add Progress</Button>
                             </Link>
                             <Link to = '/goals' style={{ textDecoration: 'none' }}>
                                 <Button color="inherit" className={classes.button}>Goals/Tasks</Button>

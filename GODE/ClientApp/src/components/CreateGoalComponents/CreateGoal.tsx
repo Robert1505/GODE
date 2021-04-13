@@ -1,35 +1,61 @@
-import axios from "axios";
 import React, { ReactElement } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { makeStyles } from "@material-ui/core/styles";
-import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
-import background from "../../assets/GODE-createGoal.png";
 import { Goal } from "../../interfaces/Goal";
 import { createGoal } from "../../services/goalService";
 import Title from "./Title";
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
   },
-
   margin: {
     margin: theme.spacing(1),
-    color: 'white'
+    '& .MuiFormLabel-root': {
+      color: 'white'
+  }
   },
+  center: {
+    textAlign: "center"
+  }
 }));
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'blue',
+      },
+      '&:hover fieldset': {
+        borderColor: 'blue',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'blue',
+      },
+    },
+    '& .MuiInputBase-input': {
+      color: 'white'
+    },
+    
+  },
+
+})(TextField);
 
 const ButtonStyle = makeStyles({
   root: {
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+    background: "linear-gradient(45deg, #57E2E5 30%, #623CEA 90%)",
     borderRadius: 3,
     border: 0,
     color: "white",
     height: 48,
     padding: "0 30px",
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    boxShadow: "0 3px 5px 2px rgb(98, 60, 234)",
+    marginLeft: '25px',
+    marginTop: '10px'
   },
   label: {
     textTransform: "capitalize",
@@ -38,11 +64,23 @@ const ButtonStyle = makeStyles({
 
 interface Props {}
 
+interface IFormValues {
+  name: "";
+}
+
 export default function CreateGoal({}: Props): ReactElement {
-  const { register, handleSubmit, control } = useForm<Goal>();
+
+  const defaultValues = {
+    name: "",
+  };
+
+  const { register, handleSubmit, control, reset } = useForm<Goal>({
+    defaultValues
+  });
 
   const onSubmit = (formValues: Goal) => {
     createGoal(formValues);
+    reset()
   };
 
   const classes = useStyles();
@@ -50,20 +88,23 @@ export default function CreateGoal({}: Props): ReactElement {
   const classNameButton = ButtonStyle();
 
   return (
-    <div>
-      {/* <img className={classes.background} src={background} alt="" /> */}
-      <Title />
+    <div className = {classes.center}>
+      <Title /> 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Controller
           control={control}
           name="name"
           render={({ ref, value, onChange }) => (
-            <InputBase
+            <CssTextField 
               inputRef={ref}
-              //   value={value}
-              onChange={(e) => onChange(e.target.value)}
-              type="text"
               className={classes.margin}
+              value={value}
+              label="Goal"
+              onChange={(e) => onChange(e.target.value)}
+              variant="outlined"
+              type="text"
+              id="custom-css-outlined-input"
+              autoComplete = "off"
             />
           )}
         />

@@ -71,8 +71,8 @@ export default function NavBar({}: Props): ReactElement {
                             <Link to = '/createTask' style={{ textDecoration: 'none' }}>
                                 <Button color="inherit" className={classes.button}>Create Task</Button>
                             </Link>
-                            <Link to = '/addProgress' style={{ textDecoration: 'none' }}>
-                                <Button color="inherit" className={classes.button}>Add Progress</Button>
+                            <Link to = '/goals' style={{ textDecoration: 'none' }}>
+                                <Button color="inherit" className={classes.button}>Goals/Tasks</Button>
                             </Link>
                             <Link to = '/dailySummary' style={{ textDecoration: 'none' }}>
                                 <Button color="inherit" className={classes.button}>Daily Summary</Button>

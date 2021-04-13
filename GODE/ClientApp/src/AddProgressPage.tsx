@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
-import NavMenu from './components/CreateTaskComponents/NavMenu';
-import CreateTask from './components/CreateTaskComponents/CreateTask';
+import NavMenu from './components/AddProgressComponents/NavMenu';
+import AddProgress from './components/AddProgressComponents/AddProgress';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import BgImage from "./assets/GODE-createTask.png";
-
+import BgImage from "./assets/GODE-addprogress.png";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,22 +15,22 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }));
 
+
 interface Props {
     
 }
 
-
-export default function CreateTaskPage({}: Props): ReactElement {
+export default function AddProgressPage({}: Props): ReactElement {
 
     const classes = useStyles();
 
     return (
-        <div >
-           <div>
+        <div>
+            <div>
                 <NavMenu />
-           </div>
-           <div className = {classes.bgImage}>
-                <CreateTask />
+            </div>
+            <div className = {classes.bgImage}>
+                <AddProgress />
             </div>
         </div>
     )

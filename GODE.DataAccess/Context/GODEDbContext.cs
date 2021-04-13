@@ -15,6 +15,6 @@ namespace GODE.DataAccess.Context
 
         public DbSet<Goal> Goals { get; set; }
         public DbSet<Mission> Tasks { get; set; }
-
+        public DbSet<ProgressOnDate> ProgressOnDates { get; set; }
     }
 }

@@ -4,10 +4,15 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            background: '#000000'
+            display: "flex",
+            alignItems: "center",
+            marginBottom: '25px',
+            textAlign: 'center',
+            marginLeft: '40px',
+            marginRight: '40px'
         },
         title: {
-            fontSize: '70px',
+            fontSize: '45px',
             color: 'white',
             fontFamily: 'Poppins',
             fontWeight: 800

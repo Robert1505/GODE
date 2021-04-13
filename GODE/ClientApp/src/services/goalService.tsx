@@ -7,6 +7,9 @@ export const getGoals = async () => {
 }
 
 export const createGoal = async (goal: Goal) => {
-    const response = await axios.post("https://localhost:44383/api/Goal/create", goal);
+    const response = await axios.post(
+        "https://localhost:44383/api/Goal/create", 
+        goal
+    );
     return response.data;
 }

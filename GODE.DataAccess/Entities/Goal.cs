@@ -8,6 +8,7 @@ namespace GODE.DataAccess.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string ShortDate { get; set; }
         public virtual ICollection<Mission> Tasks { get; set; }
     }
 }

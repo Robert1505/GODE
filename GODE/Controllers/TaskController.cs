@@ -37,6 +37,7 @@ namespace GODE.Controllers
         {
             return Ok(_taskManager.AddProgress(model.TaskId, model.Minutes));
         }
+
         [HttpPost]
         [Route("markAsCompleted/{TaskId}")]
         public IActionResult MarkAsCompleted(Guid TaskId)
@@ -44,5 +45,11 @@ namespace GODE.Controllers
             return Ok(_taskManager.MarkAsCompleted(TaskId));
         }
 
+        [HttpGet]
+        [Route("tasksSolvedToday")]
+        public IActionResult TasksSolved()
+        {
+            return Ok(_taskManager.TasksSolvedToday());
+        }
     }
 }

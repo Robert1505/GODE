@@ -3,6 +3,7 @@ export interface Task {
     name: string;
     completed: boolean;
     estimatedTime: number;
+    shortDate: string;
     progress: number;
     goalId: string
 } 

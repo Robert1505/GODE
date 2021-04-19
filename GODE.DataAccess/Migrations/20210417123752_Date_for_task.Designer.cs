@@ -4,14 +4,16 @@ using GODE.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GODE.DataAccess.Migrations
 {
     [DbContext(typeof(GODEDbContext))]
-    partial class GODEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210417123752_Date_for_task")]
+    partial class Date_for_task
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,6 @@ namespace GODE.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShortDate")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

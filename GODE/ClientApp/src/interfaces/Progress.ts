@@ -1,6 +1,6 @@
 export interface Progress{
-    id: string,
+    id?: string,
     date: Date,
-    shortDate: string,
+    shortDate?: string,
     minutes: number
 }

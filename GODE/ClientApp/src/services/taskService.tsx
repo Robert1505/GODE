@@ -31,3 +31,10 @@ export const markAsCompleted = async (taskId: string) => {
     )
     return response.data;
 }
+
+export const getTasksSolvedToday = async() => {
+  const response = await axios.get(
+    'https://localhost:44383/api/Task/tasksSolvedToday'
+  )
+  return response.data;
+}

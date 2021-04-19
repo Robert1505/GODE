@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 800,
             color: 'black',
             textAlign: 'center',
-            paddingTop: '30px'
+            paddingTop: '75px'
         },
         root: {
             '& > *': {

@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { blue } from '@material-ui/core/colors';
+import { blue } from "@material-ui/core/colors";
 import { Controller, useForm } from "react-hook-form";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -11,13 +11,13 @@ import { addProgress, markAsCompleted } from "../../services/taskService";
 import { getTasks } from "../../services/taskService";
 import Title from "./Title";
 import { MenuItem, Select } from "@material-ui/core";
-import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
-
+import Checkbox, { CheckboxProps } from "@material-ui/core/Checkbox";
+import { addProgressToDate } from "../../services/progressService";
 
 const GreenCheckbox = withStyles({
   root: {
     color: blue[400],
-    '&$checked': {
+    "&$checked": {
       color: blue[600],
     },
   },
@@ -108,7 +108,7 @@ export default function AddProgress({}: Props): ReactElement {
   const defaultValues = {
     taskId: "",
     minutes: 0,
-    completed: false
+    completed: false,
   };
   const { register, handleSubmit, control, reset } = useForm<IFormValues>({
     defaultValues,
@@ -119,7 +119,8 @@ export default function AddProgress({}: Props): ReactElement {
   const onSubmit = (formValues: IFormValues) => {
     // requests
     addProgress(formValues);
-    if(formValues.completed === true){
+    addProgressToDate({ date: new Date(), minutes: formValues.minutes });
+    if (formValues.completed === true) {
       markAsCompleted(formValues.taskId);
     }
 
@@ -134,7 +135,9 @@ export default function AddProgress({}: Props): ReactElement {
 
   const renderMenuItems = () => {
     return tasks.map((task: Task) => {
-      return <MenuItem value={task.id}>{task.name}</MenuItem>;
+      if(task.completed === false){
+        return <MenuItem value={task.id}>{task.name}</MenuItem>;
+      }
     });
   };
 
@@ -204,10 +207,10 @@ export default function AddProgress({}: Props): ReactElement {
             name="completed"
             defaultValue={0}
             render={({ ref, onChange, value }) => (
-              <GreenCheckbox 
+              <GreenCheckbox
                 inputRef={ref}
                 checked={value}
-                onChange={(e) => onChange(e.target.checked)} 
+                onChange={(e) => onChange(e.target.checked)}
               />
             )}
           />

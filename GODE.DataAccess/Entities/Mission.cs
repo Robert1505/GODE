@@ -12,6 +12,7 @@ namespace GODE.DataAccess.Entities
         public bool Completed { get; set; }
         public int EstimatedTime { get; set; }
         public int Progress { get; set; }
+        public string ShortDate { get; set; }
 
         [ForeignKey("Goal")]
         public Guid GoalId { get; set; }

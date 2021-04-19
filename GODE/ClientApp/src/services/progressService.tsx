@@ -1,17 +1,18 @@
-import axios from 'axios';
-import { Progress } from '../interfaces/Progress';
+import axios from "axios";
+import { Progress } from "../interfaces/Progress";
 
-export const addProgress = async (progress: Progress) => {
-    const response = await axios.post(
-        "https://localhost:44383/api/Progress/add", 
-        progress
-    );
-    return response.data;
-}
+export const addProgressToDate = async (progress: Progress) => {
+  const response = await axios.post(
+    "https://localhost:44383/api/ProgressOnDate/add",
+    progress
+  );
+  return response.data;
+};
 
-export const getProgress = async () => {
-    const response = await axios.get(
-        "https://localhost:44383/api/Progress/get"
-    );
-    return response.data;
-}
+export const getProgressOnDate = async (model: { date: Date }) => {
+  const response = await axios.post(
+    "https://localhost:44383/api/ProgressOnDate/get",
+    model
+  );
+  return response.data;
+};

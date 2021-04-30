@@ -10,7 +10,7 @@ import { Task } from "../../interfaces/Task";
 import { addProgress, markAsCompleted } from "../../services/taskService";
 import { getTasks } from "../../services/taskService";
 import Title from "./Title";
-import { MenuItem, Select } from "@material-ui/core";
+import { FormControlLabel, MenuItem, Select } from "@material-ui/core";
 import Checkbox, { CheckboxProps } from "@material-ui/core/Checkbox";
 import { addProgressToDate } from "../../services/progressService";
 
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   center: {
-    marginLeft: "250px",
+    marginLeft: "235px",
   },
   formControl: {
     margin: theme.spacing(1),
@@ -134,11 +134,11 @@ export default function AddProgress({}: Props): ReactElement {
   const classNameButton = ButtonStyle();
 
   const renderMenuItems = () => {
-    return tasks.map((task: Task) => {
-      if(task.completed === false){
+    return tasks
+      .filter((task: Task) => task.completed === false)
+      .map((task: Task) => {
         return <MenuItem value={task.id}>{task.name}</MenuItem>;
-      }
-    });
+      });
   };
 
   const handleChange = (e: any) => {
@@ -207,11 +207,16 @@ export default function AddProgress({}: Props): ReactElement {
             name="completed"
             defaultValue={0}
             render={({ ref, onChange, value }) => (
-              <GreenCheckbox
-                inputRef={ref}
-                checked={value}
-                onChange={(e) => onChange(e.target.checked)}
-              />
+              <FormControlLabel
+                control={
+                  <GreenCheckbox
+                    inputRef={ref}
+                    checked={value}
+                    onChange={(e) => onChange(e.target.checked)}
+                  />
+                }
+                label="Completed" style = {{color: blue[400], marginLeft: '16px', marginTop: '12px'}}
+            />
             )}
           />
           <Button

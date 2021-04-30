@@ -4,14 +4,16 @@ using GODE.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GODE.DataAccess.Migrations
 {
     [DbContext(typeof(GODEDbContext))]
-    partial class GODEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210429130958_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,92 +54,6 @@ namespace GODE.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Achievements");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("46b08ff1-6204-4dc6-a558-e647f5e7ead3"),
-                            Description = "Complete 100 tasks to reach this achievement!",
-                            Index = 0,
-                            Title = "100 TASKS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("f4924d90-e5f7-4bd3-9156-10c11a5f1813"),
-                            Description = "Complete 500 tasks to reach this achievement!",
-                            Index = 1,
-                            Title = "500 TASKS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("82b05f85-3b05-48bd-8b30-2b8ebc4260c3"),
-                            Description = "Complete 1000 tasks to reach this achievement!",
-                            Index = 2,
-                            Title = "1000 TASKS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("c3213c0b-2359-4141-bf73-1afc1d8f9952"),
-                            Description = "Complete 1500 tasks to reach this achievement!",
-                            Index = 3,
-                            Title = "1500 TASKS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("d2370dcf-1b01-4d71-86b6-5516473f16bd"),
-                            Description = "Complete 100 goals to reach this achievement!",
-                            Index = 4,
-                            Title = "100 GOALS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("c8d8d7a5-ea1c-4ec4-ba52-bf2fb6ccfd1e"),
-                            Description = "Complete 350 goals to reach this achievement!",
-                            Index = 5,
-                            Title = "350 GOALS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("5a5779f5-bad9-4523-bf0e-949034a2c597"),
-                            Description = "Complete 700 goals to reach this achievement!",
-                            Index = 6,
-                            Title = "700 GOALS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("3a6122ce-08c6-495b-928b-c813823cf9e9"),
-                            Description = "Complete 1000 goals to reach this achievement!",
-                            Index = 7,
-                            Title = "1000 GOALS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("9b81dd62-3a1f-4ff3-8880-8668b377e534"),
-                            Description = "Complete 150 important goals to reach this achievement!",
-                            Index = 8,
-                            Title = "150 IMPORTANT GOALS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("f6d50309-804e-411f-baa8-6a0868d4a6c9"),
-                            Description = "Earn 1000 minutes of progress to reach this achievement!",
-                            Index = 9,
-                            Title = "1000 MINUTES OF PROGRESS"
-                        },
-                        new
-                        {
-                            Id = new Guid("bbcc7ce7-c474-4769-9119-928dd4e81c88"),
-                            Description = "Complete 250 important goals to reach this achievement!",
-                            Index = 10,
-                            Title = "250 IMPORTANT GOALS COMPLETED"
-                        },
-                        new
-                        {
-                            Id = new Guid("f81cd53b-584e-4446-abe9-2dda3bb1ef3a"),
-                            Description = "Earn 1500 minutes of progress to reach this achievement!",
-                            Index = 11,
-                            Title = "1500 MINUTES OF PROGRESS"
-                        });
                 });
 
             modelBuilder.Entity("GODE.DataAccess.Entities.Goal", b =>
@@ -226,13 +142,6 @@ namespace GODE.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("c20a1ddf-31ca-4c2d-97f7-9a7871315120"),
-                            Username = "Robert"
-                        });
                 });
 
             modelBuilder.Entity("GoalUser", b =>

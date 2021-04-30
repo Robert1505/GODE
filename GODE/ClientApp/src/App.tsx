@@ -10,6 +10,8 @@ import DailySummary from './DailySummaryPage';
 import WeeklySummary from './WeeklySummaryPage';
 import Goals from './Goals';
 import AddProgressPage from './AddProgressPage';
+import Achievements from './Achievements';
+import CreateUser from './CreateUser';
 
 interface Props {
     
@@ -21,6 +23,9 @@ export default function App({}: Props): ReactElement {
       <Switch>
         <Route path = '/' exact>
           <Home /> 
+        </Route>
+        <Route path = '/createUser' exact>
+          <CreateUser />
         </Route>
         <Route path = "/createGoal" exact>
           <CreateGoalPage />
@@ -39,6 +44,9 @@ export default function App({}: Props): ReactElement {
         </Route>
         <Route path = "/weeklySummary" exact>
           <WeeklySummary />
+        </Route>
+        <Route path = '/achievements' exact>
+          <Achievements />
         </Route>
         <Route path = "*">
           <Page404 />

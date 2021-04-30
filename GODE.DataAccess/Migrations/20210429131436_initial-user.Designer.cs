@@ -4,14 +4,16 @@ using GODE.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GODE.DataAccess.Migrations
 {
     [DbContext(typeof(GODEDbContext))]
-    partial class GODEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210429131436_initial-user")]
+    partial class initialuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

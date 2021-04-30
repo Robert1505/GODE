@@ -13,7 +13,7 @@ namespace GODE.DataAccess.Repositories
         Mission CreateTask(Mission task);
         List<Mission> GetTask();
         Mission AddProgress(Guid TaskId, int Minutes);
-        Mission MarkAsCompleted(Guid TaskId);
+        Mission MarkAsCompleted(Guid TaskId, Guid UserId);
         int TasksSolvedToday();
     }
 
@@ -55,16 +55,19 @@ namespace GODE.DataAccess.Repositories
             return _context.Tasks.ToList();
         }
 
-        public Mission MarkAsCompleted(Guid TaskId)
+        public Mission MarkAsCompleted(Guid TaskId, Guid UserId)
         {
             Mission task = _context.Tasks
                 .FirstOrDefault(x => x.Id == TaskId);
+
+            User user = _context.User.FirstOrDefault(x => x.Id == UserId);
 
             if (task != null)
             {
                 task.Completed = true;
                 DateTime date = DateTime.Now;
                 task.ShortDate = date.ToShortDateString();
+                user.TasksCompleted.Add(task);
             }
             _context.SaveChanges();
 
@@ -80,6 +83,7 @@ namespace GODE.DataAccess.Repositories
             {
                 DateTime date = DateTime.Now;
                 goal.ShortDate = date.ToShortDateString();
+                goal.Completed = true;
             }
             _context.SaveChanges();
 

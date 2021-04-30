@@ -10,6 +10,7 @@ namespace GODE.Business.Managers
     {
         Goal CreateGoal(Goal goal);
         List<Goal> GetGoals();
+        int GoalsSolvedToday();
     }
     public class GoalManager : IGoalManager
     {
@@ -27,6 +28,11 @@ namespace GODE.Business.Managers
         public List<Goal> GetGoals()
         {
             return _goalRepository.GetGoals();
+        }
+
+        public int GoalsSolvedToday()
+        {
+            return _goalRepository.GoalsSolvedToday();
         }
     }
 }

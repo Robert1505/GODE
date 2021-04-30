@@ -13,3 +13,10 @@ export const createGoal = async (goal: Goal) => {
     );
     return response.data;
 }
+
+export const getGoalsSolvedToday = async() => {
+    const response = await axios.get(
+      'https://localhost:44383/api/Goal/goalsSolvedToday'
+    )
+    return response.data;
+  }

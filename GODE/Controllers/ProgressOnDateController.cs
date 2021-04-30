@@ -15,9 +15,13 @@ namespace GODE.Controllers
     public class ProgressOnDateController : ControllerBase
     {
         private readonly IProgressOnDateManager _progressOnDateManager;
-        public ProgressOnDateController(IProgressOnDateManager progressOnDateManager)
+        private readonly IGoalManager _goalManager;
+        private readonly ITaskManager _taskManager;
+        public ProgressOnDateController(IProgressOnDateManager progressOnDateManager, IGoalManager goalManager, ITaskManager taskManager)
         {
             _progressOnDateManager = progressOnDateManager;
+            _goalManager = goalManager;
+            _taskManager = taskManager;
         }
         [HttpPost]
         [Route("get")]
@@ -31,6 +35,17 @@ namespace GODE.Controllers
         public IActionResult Add(ProgressOnDate progressOnDate)
         {
             return Ok(_progressOnDateManager.AddProgress(progressOnDate));
+        }
+
+        [HttpPost]
+        [Route("getDailyInformation")]
+        public IActionResult GetDailyInformation(DateTimeModel model)
+        {
+            DailyInformationModel response = new DailyInformationModel();
+            response.GoalsCompleted = _goalManager.GoalsSolvedToday();
+            response.TasksCompleted = _taskManager.TasksSolvedToday();
+            response.ProgressInMinutes = _progressOnDateManager.GetProgress(model.Date).Minutes;
+            return Ok(response);
         }
         
     }

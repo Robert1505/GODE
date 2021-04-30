@@ -40,9 +40,9 @@ namespace GODE.Controllers
 
         [HttpPost]
         [Route("markAsCompleted/{TaskId}")]
-        public IActionResult MarkAsCompleted(Guid TaskId)
+        public IActionResult MarkAsCompleted(Guid TaskId, Guid UserId)
         {
-            return Ok(_taskManager.MarkAsCompleted(TaskId));
+            return Ok(_taskManager.MarkAsCompleted(TaskId, UserId));
         }
 
         [HttpGet]

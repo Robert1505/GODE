@@ -45,7 +45,14 @@ namespace GODE.DataAccess.Repositories
             string shortDate = date.ToShortDateString();
 
             ProgressOnDate foundProgress = _context.ProgressOnDates.FirstOrDefault(x => x.ShortDate == shortDate);
-
+            if (foundProgress == null)
+            {
+                return new ProgressOnDate()
+                {
+                    ShortDate = shortDate,
+                    Minutes = 0
+                };
+            }
             return foundProgress;
         }
     }

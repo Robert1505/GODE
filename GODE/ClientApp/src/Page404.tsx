@@ -13,26 +13,27 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: '85px'
         },
         title:{
-            fontFamily: "RocknRoll",
+            fontFamily: "Poppins",
             margin: '100px 100px',
             fontSize: '50px',
+            fontWeight: 700,
         },
         subtitle:{
-            fontFamily: "Arimo",
+            fontFamily: "Poppins",
             fontSize: '30px',
-            fontWeight: "700",
+            fontWeight: 700,
             margin:"0 190px"
         },
         text1: {
-            fontFamily: "Arimo",
+            fontFamily: "Poppins",
             fontSize: '25px',
-            fontWeight: "500",
+            fontWeight: 500,
             margin:"50px 175px"
         },
         text2:{
-            fontFamily: "Arimo",
+            fontFamily: "Poppins",
             fontSize: '20px',
-            fontWeight: "500",
+            fontWeight: 500,
             margin:"50px 110px"
         }
 }));
@@ -48,7 +49,7 @@ export default function Page404({}: Props): ReactElement {
     return (
         <div>
             <NavMenu />
-            <div className={classes.root}>
+            <div className={classes.root} style = {{color: 'white'}}>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <img src = {avatar} alt="logo" className = {classes.logo} />

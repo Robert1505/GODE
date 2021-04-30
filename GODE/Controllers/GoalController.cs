@@ -32,5 +32,12 @@ namespace GODE.Controllers
         {
             return Ok(_goalManager.GetGoals());
         }
+
+        [HttpGet]
+        [Route("goalsSolvedToday")]
+        public IActionResult GoalsSolved()
+        {
+            return Ok(_goalManager.GoalsSolvedToday());
+        }
     }
 }

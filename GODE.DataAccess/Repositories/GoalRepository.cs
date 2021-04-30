@@ -14,6 +14,7 @@ namespace GODE.DataAccess.Repositories
         List<Goal> GetGoals();
         Guid DeleteGoal(Goal goal);
         Goal UpdateGoal(Goal goal);
+        int GoalsSolvedToday();
     }
     public class GoalRepository : IGoalRepository
     {
@@ -48,6 +49,14 @@ namespace GODE.DataAccess.Repositories
             _context.Goals.Update(goal);
             _context.SaveChanges();
             return goal;
+        }
+
+        public int GoalsSolvedToday()
+        {
+            DateTime date = DateTime.Now;
+            string shortDate = date.ToShortDateString();
+            int goalsSolved = _context.Goals.Where(x => x.ShortDate == shortDate).Count();
+            return goalsSolved;
         }
     }
 }

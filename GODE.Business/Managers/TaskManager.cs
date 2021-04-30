@@ -12,7 +12,7 @@ namespace GODE.Business.Managers
         List<Mission> GetTask();
 
         Mission AddProgress(Guid TaskId, int Minutes);
-        Mission MarkAsCompleted(Guid TaskId);
+        Mission MarkAsCompleted(Guid TaskId, Guid UserId );
         int TasksSolvedToday();
     }
     public class TaskManager : ITaskManager
@@ -38,9 +38,9 @@ namespace GODE.Business.Managers
             return _taskRepository.GetTask();
         }
 
-        public Mission MarkAsCompleted(Guid TaskId)
+        public Mission MarkAsCompleted(Guid TaskId, Guid UserId)
         {
-            return _taskRepository.MarkAsCompleted(TaskId);
+            return _taskRepository.MarkAsCompleted(TaskId, UserId);
         }
 
         public int TasksSolvedToday()

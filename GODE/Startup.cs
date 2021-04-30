@@ -1,5 +1,6 @@
 using GODE.Business.Managers;
 using GODE.DataAccess.Context;
+using GODE.DataAccess.Entities;
 using GODE.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,7 +50,10 @@ namespace GODE
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ITaskManager, TaskManager>();
 
-            
+            services.AddScoped<IAchievementRepository, AchievementRepository>();
+            services.AddScoped<IAchievementManager, AchievementManager>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,6 +98,10 @@ namespace GODE
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            
+
         }
+
     }
 }

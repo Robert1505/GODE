@@ -16,3 +16,11 @@ export const getProgressOnDate = async (model: { date: Date }) => {
   );
   return response.data;
 };
+
+export const getDailyInformation = async (model: {date: Date}) => {
+  const response = await axios.post(
+    "https://localhost:44383/api/ProgressOnDate/getDailyInformation",
+    model
+  );
+  return response.data;
+}

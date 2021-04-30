@@ -25,7 +25,7 @@ export default function Details({}: Props): ReactElement {
     return (
         <div>
             <div className = {classes.details}>
-                Goals solved:
+                Goals completed:
             </div>
             <div className = {classes.details}>
                 Tasks solved:

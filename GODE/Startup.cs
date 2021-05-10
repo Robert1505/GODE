@@ -53,7 +53,8 @@ namespace GODE
             services.AddScoped<IAchievementRepository, AchievementRepository>();
             services.AddScoped<IAchievementManager, AchievementManager>();
 
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserManager, UserManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,6 +12,7 @@ import Goals from './Goals';
 import AddProgressPage from './AddProgressPage';
 import Achievements from './Achievements';
 import CreateUser from './CreateUser';
+import ChooseUser from './ChooseUser';
 
 interface Props {
     
@@ -23,6 +24,9 @@ export default function App({}: Props): ReactElement {
       <Switch>
         <Route path = '/' exact>
           <Home /> 
+        </Route>
+        <Route path = "/chooseUser" exact>
+          <ChooseUser />
         </Route>
         <Route path = '/createUser' exact>
           <CreateUser />

@@ -20,36 +20,36 @@ namespace GODE.Controllers
             _taskManager = taskManager;
         }
         [HttpPost]
-        [Route ("create")]
-        public IActionResult CreateTask(Mission task)
+        [Route ("create/{UserId}")]
+        public IActionResult CreateTask(Guid UserId, Mission task)
         {
-            return Ok(_taskManager.CreateTask(task));
+            return Ok(_taskManager.CreateTask(UserId,task));
         }
         [HttpGet]
-        [Route("get")]
-        public IActionResult GetTask()
+        [Route("get/{UserId}")]
+        public IActionResult GetTask(Guid UserId)
         {
-            return Ok(_taskManager.GetTask());
+            return Ok(_taskManager.GetTasks( UserId));
         }
         [HttpPost]
-        [Route("addProgress")]
-        public IActionResult AddProgress(TaskProgressModel model)
+        [Route("addProgress/{UserId}")]
+        public IActionResult AddProgress(TaskProgressModel model, Guid UserId)
         {
-            return Ok(_taskManager.AddProgress(model.TaskId, model.Minutes));
+            return Ok(_taskManager.AddProgress(model.TaskId, model.Minutes, UserId));
         }
 
         [HttpPost]
-        [Route("markAsCompleted/{TaskId}")]
+        [Route("markAsCompleted/{TaskId}/{UserId}")]
         public IActionResult MarkAsCompleted(Guid TaskId, Guid UserId)
         {
             return Ok(_taskManager.MarkAsCompleted(TaskId, UserId));
         }
 
         [HttpGet]
-        [Route("tasksSolvedToday")]
-        public IActionResult TasksSolved()
+        [Route("tasksSolvedToday/{UserId}")]
+        public IActionResult TasksSolved(Guid UserId)
         {
-            return Ok(_taskManager.TasksSolvedToday());
+            return Ok(_taskManager.TasksSolvedToday(UserId));
         }
     }
 }

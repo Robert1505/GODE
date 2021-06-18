@@ -8,12 +8,14 @@ namespace GODE.Business.Managers
 {
     public interface ITaskManager
     {
-        Mission CreateTask(Mission task);
-        List<Mission> GetTask();
+        Mission CreateTask(Guid UserId, Mission task);
+        List<Mission> GetTasks(Guid UserId);
 
-        Mission AddProgress(Guid TaskId, int Minutes);
+        Mission AddProgress(Guid TaskId, int Minutes, Guid UserId);
         Mission MarkAsCompleted(Guid TaskId, Guid UserId );
-        int TasksSolvedToday();
+        int TasksSolvedToday(Guid UserId);
+
+        int TasksSolvedThisWeek(Guid UserId);
     }
     public class TaskManager : ITaskManager
     {
@@ -23,19 +25,19 @@ namespace GODE.Business.Managers
             _taskRepository = taskRepository;
         }
 
-        public Mission AddProgress(Guid TaskId, int Minutes)
+        public Mission AddProgress(Guid TaskId, int Minutes, Guid UserId)
         {
-            return _taskRepository.AddProgress(TaskId, Minutes);
+            return _taskRepository.AddProgress(TaskId, Minutes,  UserId);
         }
 
-        public Mission CreateTask(Mission task)
+        public Mission CreateTask(Guid UserId, Mission task)
         {
-            return _taskRepository.CreateTask(task);
+            return _taskRepository.CreateTask(UserId,task);
         }
 
-        public List<Mission> GetTask()
+        public List<Mission> GetTasks(Guid UserId)
         {
-            return _taskRepository.GetTask();
+            return _taskRepository.GetTasks(UserId);
         }
 
         public Mission MarkAsCompleted(Guid TaskId, Guid UserId)
@@ -43,9 +45,14 @@ namespace GODE.Business.Managers
             return _taskRepository.MarkAsCompleted(TaskId, UserId);
         }
 
-        public int TasksSolvedToday()
+        public int TasksSolvedThisWeek(Guid UserId)
         {
-            return _taskRepository.TasksSolvedToday();
+            return _taskRepository.TasksSolvedThisWeek(UserId);
+        }
+
+        public int TasksSolvedToday(Guid UserId)
+        {
+            return _taskRepository.TasksSolvedToday(UserId);
         }
     }
 }

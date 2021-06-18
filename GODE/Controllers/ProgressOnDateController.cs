@@ -24,10 +24,10 @@ namespace GODE.Controllers
             _taskManager = taskManager;
         }
         [HttpPost]
-        [Route("get")]
-        public IActionResult Get(DateTimeModel model)
+        [Route("get/{UserId}")]
+        public IActionResult Get(DateTimeModel model, Guid UserId)
         {
-            return Ok(_progressOnDateManager.GetProgress(model.Date));
+            return Ok(_progressOnDateManager.GetProgress(model.Date, UserId));
         }
 
         [HttpPost]
@@ -38,15 +38,25 @@ namespace GODE.Controllers
         }
 
         [HttpPost]
-        [Route("getDailyInformation")]
-        public IActionResult GetDailyInformation(DateTimeModel model)
+        [Route("getDailyInformation/{UserId}")]
+        public IActionResult GetDailyInformation(DateTimeModel model, Guid UserId)
         {
-            DailyInformationModel response = new DailyInformationModel();
-            response.GoalsCompleted = _goalManager.GoalsSolvedToday();
-            response.TasksCompleted = _taskManager.TasksSolvedToday();
-            response.ProgressInMinutes = _progressOnDateManager.GetProgress(model.Date).Minutes;
+            ProgressInformationModel response = new ProgressInformationModel();
+            response.GoalsCompleted = _goalManager.GoalsSolvedToday(UserId);
+            response.TasksCompleted = _taskManager.TasksSolvedToday(UserId);
+            response.ProgressInMinutes = _progressOnDateManager.GetProgress(model.Date, UserId).Minutes;
             return Ok(response);
         }
-        
+        [HttpPost]
+        [Route("getWeeklyInformation/{UserId}")]
+        public IActionResult GetWeeklyInformation(DateTimeModel model, Guid UserId)
+        {
+            ProgressInformationModel response = new ProgressInformationModel();
+            response.GoalsCompleted = _goalManager.GoalsSolvedThisWeek(UserId);
+            response.TasksCompleted = _taskManager.TasksSolvedThisWeek(UserId);
+            response.ProgressInMinutes = _progressOnDateManager.GetWeeklyProgress(UserId);
+            return Ok(response);
+        }
+
     }
 }

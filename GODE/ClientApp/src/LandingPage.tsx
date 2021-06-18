@@ -3,24 +3,17 @@ import NavMenu from './components/LandingPageComponents/NavMenu';
 import Title from './components/LandingPageComponents/Title';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import BgImage from "./assets/GODE-landingPage.png";
+import CommonNavBar from './CommonNavbar';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
           backgroundColor: "#080201",
         },
-        nav: {
-          position: 'absolute',
-          zIndex: 99,
-          top: 0,
-          right: 0,
-          left: 0,
-          bottom: 0
-        },
         bgImage: {
           background: `url(${BgImage})`,
           backgroundSize: "100%",
-          minHeight: "100vh",
+          minHeight: "calc(100vh - 70px)",
           display: 'flex',
           alignItems: "center"
         },
@@ -36,9 +29,6 @@ export default function Home({}: Props): ReactElement {
 
   return (
     <div className={classes.root}>
-          <div className = {classes.nav}>
-            <NavMenu />
-          </div>
           <div className = {classes.bgImage}>
             <Title />
           </div>

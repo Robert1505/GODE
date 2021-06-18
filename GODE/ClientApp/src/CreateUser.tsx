@@ -1,10 +1,11 @@
-import { createStyles, makeStyles, TextField, Theme, withStyles } from '@material-ui/core';
+import { Button, createStyles, makeStyles, TextField, Theme, withStyles } from '@material-ui/core';
 import React, { ReactElement } from 'react'
 import NavBar from './components/CreateUserComponents/NavBar'
 import BgImage from './assets/GODE-createuser.png'
 import Title from './components/CreateUserComponents/Title'
 import { Controller, useForm } from 'react-hook-form';
 import { User } from './interfaces/User';
+import { createUser } from './services/userService';
 
 interface Props {
     
@@ -58,13 +59,31 @@ const CssTextField = withStyles({
     },
   })(TextField);
 
+  const ButtonStyle = makeStyles({
+    root: {
+      background: "linear-gradient(45deg, #57E2E5 30%, #623CEA 90%)",
+      borderRadius: 3,
+      border: 0,
+      color: "white",
+      height: 48,
+      padding: "0 30px",
+      boxShadow: "0 3px 5px 2px rgb(98, 60, 234)",
+      marginLeft: "25px",
+      marginTop: "10px",
+    },
+    label: {
+      textTransform: "capitalize",
+    },
+  });
+
 
 export default function CreateUser({}: Props): ReactElement {
 
     const classes = useStyles();
+    const classNameButton = ButtonStyle();
 
     const defaultValues = {
-        name: "",
+        username: "",
       };
     
       const { register, handleSubmit, control, reset } = useForm<User>({
@@ -72,16 +91,14 @@ export default function CreateUser({}: Props): ReactElement {
       });
     
       const onSubmit = (formValues: User) => {
-        // createGoal(formValues);
+        createUser(formValues);
         reset();
       };
       
 
     return (
         <div className = {classes.root}>
-            <div>
-                <NavBar />
-            </div>
+            
             <div className = {classes.bgImage}>
                 <div className = {classes.center}>
                     <Title />
@@ -89,7 +106,7 @@ export default function CreateUser({}: Props): ReactElement {
                 <form onSubmit={handleSubmit(onSubmit)} noValidate className = {classes.center1}>
                     <Controller
                     control={control}
-                    name="name"
+                    name="username"
                     render={({ ref, value, onChange }) => (
                         <CssTextField
                         inputRef={ref}
@@ -104,6 +121,15 @@ export default function CreateUser({}: Props): ReactElement {
                         />
                     )}
                     />
+                    <Button
+                      classes={{
+                        root: classNameButton.root,
+                        label: classNameButton.label,
+                      }}
+                      type="submit"
+                    >
+                    Submit
+                  </Button>
                 </form>
             </div>
         </div>

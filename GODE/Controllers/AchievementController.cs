@@ -23,5 +23,12 @@ namespace GODE.Controllers
         {
             return Ok(_achievementManager.GetAchievements());
         }
+        
+        [HttpGet]
+        [Route("getUserAchievements/{UserId}")]
+        public IActionResult GetUserAchievements(Guid UserId)
+        {
+            return Ok(_achievementManager.GetUserAchievements(UserId));
+        }
     }
 }

@@ -9,6 +9,7 @@ import Title from "./components/GoalsComponents/Title";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,9 +32,10 @@ interface Props {}
 export default function Goals({}: Props): ReactElement {
   const classes = useStyles();
   const [goals, setGoals] = useState<Goal[]>([]);
+  const user = useSelector((state : any) => state.user)
 
   useEffect(() => {
-    getGoals().then((data: Goal[]) => {
+    getGoals(user.id).then((data: Goal[]) => {
       data.sort((a: Goal, b: Goal) => {
         if (a.important) return -1;
         if (b.important) return 1;
@@ -141,9 +143,7 @@ export default function Goals({}: Props): ReactElement {
 
   return (
     <div className={classes.root}>
-      <div>
-        <NavMenu />
-      </div>
+      
       <div className={classes.bgImage}>
         <Title />
         {renderGoals()}

@@ -10,7 +10,8 @@ namespace GODE.DataAccess.Repositories
     public interface IProgressOnDateRepository
     {
         ProgressOnDate AddProgress(ProgressOnDate progressOnDate);
-        ProgressOnDate GetProgress(DateTime date);
+        ProgressOnDate GetProgress(DateTime date, Guid UserId);
+        int GetWeeklyProgress(Guid UserId);
     }
     public class ProgressOnDateRepository : IProgressOnDateRepository
     {
@@ -40,11 +41,11 @@ namespace GODE.DataAccess.Repositories
             return progressOnDate;
         }
 
-        public ProgressOnDate GetProgress(DateTime date)
+        public ProgressOnDate GetProgress(DateTime date, Guid UserId)
         {
             string shortDate = date.ToShortDateString();
 
-            ProgressOnDate foundProgress = _context.ProgressOnDates.FirstOrDefault(x => x.ShortDate == shortDate);
+            ProgressOnDate foundProgress = _context.ProgressOnDates.FirstOrDefault(x => x.ShortDate == shortDate && x.UserId == UserId);
             if (foundProgress == null)
             {
                 return new ProgressOnDate()
@@ -54,6 +55,17 @@ namespace GODE.DataAccess.Repositories
                 };
             }
             return foundProgress;
+        }
+
+        public int GetWeeklyProgress(Guid UserId)
+        {
+            DateTime date = DateTime.Now;
+            int totalProgress = 0;
+            for(int i = 0; i < 7; i++)
+            {
+                totalProgress += GetProgress(date.AddDays(-i), UserId).Minutes;
+            }
+            return totalProgress;
         }
     }
 }

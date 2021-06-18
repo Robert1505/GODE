@@ -9,7 +9,8 @@ namespace GODE.Business.Managers
     public interface IProgressOnDateManager
     {
         ProgressOnDate AddProgress(ProgressOnDate progressOnDate);
-        ProgressOnDate GetProgress(DateTime date);
+        ProgressOnDate GetProgress(DateTime date, Guid UserId);
+        int GetWeeklyProgress(Guid UserId);
     }
     public class ProgressOnDateManager : IProgressOnDateManager
     {
@@ -24,9 +25,14 @@ namespace GODE.Business.Managers
             return _progressOnDateRepository.AddProgress(progressOnDate);
         }
 
-        public ProgressOnDate GetProgress(DateTime date)
+        public ProgressOnDate GetProgress(DateTime date, Guid UserId)
         {
-            return _progressOnDateRepository.GetProgress(date);
+            return _progressOnDateRepository.GetProgress(date, UserId);
+        }
+
+        public int GetWeeklyProgress(Guid UserId)
+        {
+            return _progressOnDateRepository.GetWeeklyProgress(UserId);
         }
     }
 }

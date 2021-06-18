@@ -36,9 +36,7 @@ export default function DailySummary({}: Props): ReactElement {
 
     return (
         <div>
-            <div>
-                <NavMenu /> 
-            </div>
+           
             <div className = {classes.bgImage}>
                 <Title />
                 <Details />

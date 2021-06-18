@@ -62,7 +62,7 @@ export default function NavBar({}: Props): ReactElement {
                             <Grid className={classes.grow}>
                                 <img src = {avatar} alt="logo" className={classes.logo} />
                             </Grid>
-                            <Link to = '/' style={{ textDecoration: 'none' }}>
+                            <Link to = '/home' style={{ textDecoration: 'none' }}>
                                 <Button color="inherit" className={classes.button}>Home</Button>
                             </Link>
                             <Link to = '/createGoal' style={{ textDecoration: 'none' }}>

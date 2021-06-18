@@ -9,7 +9,6 @@ namespace GODE.DataAccess.Entities
     {
         public Mission()
         {
-            Users = new List<User>();
         }
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -17,10 +16,13 @@ namespace GODE.DataAccess.Entities
         public int EstimatedTime { get; set; }
         public int Progress { get; set; }
         public string ShortDate { get; set; }
-        public virtual IList<User> Users { get; set; }
 
         [ForeignKey("Goal")]
         public Guid GoalId { get; set; }
         public Goal Goal { get; set; }
+
+        [ForeignKey("User")]
+        public Guid? UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace GODE.Business.Managers
     public interface IAchievementManager
     {
         List<Achievement> GetAchievements();
+        List<Achievement> GetUserAchievements(Guid UserId);
     }
     public class AchievementManager : IAchievementManager
     {
@@ -20,6 +21,11 @@ namespace GODE.Business.Managers
         public List<Achievement> GetAchievements()
         {
             return _achievementRepository.GetAchievements();
+        }
+
+        public List<Achievement> GetUserAchievements(Guid UserId)
+        {
+            return _achievementRepository.GetUserAchievements(UserId);
         }
     }
 }

@@ -2,12 +2,10 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   getDailyInformation,
-  getProgressOnDate,
 } from "../../services/progressService";
-import { Progress } from "../../interfaces/Progress";
-import { getTasksSolvedToday } from "../../services/taskService";
-import { getGoalsSolvedToday } from "../../services/goalService";
+
 import { DailyInformation } from "../../interfaces/DailyInformation";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,6 +23,7 @@ interface Props {}
 
 export default function Details({}: Props): ReactElement {
   const classes = useStyles();
+  const userId = useSelector((state : any) => state.user.id);
 
   const [dailyInformation, setDailyInformation] = useState<DailyInformation>({
     goalsCompleted: 0,
@@ -34,7 +33,7 @@ export default function Details({}: Props): ReactElement {
 
   useEffect(() => {
    
-    getDailyInformation({ date: new Date() }).then((data: DailyInformation) => {
+    getDailyInformation({ date: new Date(), userId }).then((data: DailyInformation) => {
       setDailyInformation({
         goalsCompleted: data.goalsCompleted,
         tasksCompleted: data.tasksCompleted,

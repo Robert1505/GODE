@@ -13,6 +13,7 @@ import Title from "./Title";
 import { FormControlLabel, MenuItem, Select } from "@material-ui/core";
 import Checkbox, { CheckboxProps } from "@material-ui/core/Checkbox";
 import { addProgressToDate } from "../../services/progressService";
+import { useSelector } from "react-redux";
 
 const GreenCheckbox = withStyles({
   root: {
@@ -110,6 +111,7 @@ export default function AddProgress({}: Props): ReactElement {
     minutes: 0,
     completed: false,
   };
+  const user = useSelector((state: any) => state.user);
   const { register, handleSubmit, control, reset } = useForm<IFormValues>({
     defaultValues,
   });
@@ -118,10 +120,14 @@ export default function AddProgress({}: Props): ReactElement {
 
   const onSubmit = (formValues: IFormValues) => {
     // requests
-    addProgress(formValues);
-    addProgressToDate({ date: new Date(), minutes: formValues.minutes });
+    addProgress(formValues, user.id);
+    addProgressToDate({
+      date: new Date(),
+      minutes: formValues.minutes,
+      userId: user.id,
+    });
     if (formValues.completed === true) {
-      markAsCompleted(formValues.taskId);
+      markAsCompleted(formValues.taskId, user.id);
     }
 
     // reset
@@ -133,6 +139,8 @@ export default function AddProgress({}: Props): ReactElement {
 
   const classNameButton = ButtonStyle();
 
+  const userId = useSelector((state: any) => state.user.id);
+
   const renderMenuItems = () => {
     return tasks
       .filter((task: Task) => task.completed === false)
@@ -141,15 +149,15 @@ export default function AddProgress({}: Props): ReactElement {
       });
   };
 
-  const handleChange = (e: any) => {
-    setSelectedTask(e.target.value);
-  };
-
   useEffect(() => {
-    getTasks().then((data) => {
+    getTasks(userId).then((data) => {
       setTasks(data);
     });
   }, []);
+
+  const handleChange = (e: any) => {
+    setSelectedTask(e.target.value);
+  };
 
   return (
     <div className={classes.center}>
@@ -215,8 +223,13 @@ export default function AddProgress({}: Props): ReactElement {
                     onChange={(e) => onChange(e.target.checked)}
                   />
                 }
-                label="Completed" style = {{color: blue[400], marginLeft: '16px', marginTop: '12px'}}
-            />
+                label="Completed"
+                style={{
+                  color: blue[400],
+                  marginLeft: "16px",
+                  marginTop: "12px",
+                }}
+              />
             )}
           />
           <Button

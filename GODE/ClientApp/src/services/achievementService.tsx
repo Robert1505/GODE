@@ -1,7 +1,11 @@
 import axios from 'axios';
-import {Achievement} from '../interfaces/Achievement'
 
 export const getAchievement = async () => {
-    const response = await axios.get("https://localhost:44383/api/Achievement/getAchievements");
+    const response = await axios.get("Achievement/getAchievements");
+    return response.data;
+}
+
+export const getUserAchievements = async (userId : string) => {
+    const response = await axios.get(`Achievement/getUserAchievements/${userId}`);
     return response.data;
 }

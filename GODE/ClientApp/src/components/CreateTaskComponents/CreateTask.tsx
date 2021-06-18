@@ -11,6 +11,7 @@ import { MenuItem, Select } from "@material-ui/core";
 import { Goal } from "../../interfaces/Goal";
 import { getGoals } from "../../services/goalService";
 import Title from "./Title";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,9 +95,10 @@ export default function CreateGoal({}: Props): ReactElement {
   });
   const [goals, setGoals] = useState<Goal[]>([]);
   const [selectedGoal, setSelectedGoal] = useState<string>("");
+  const userId =  useSelector((state : any)  => state.user.id);
 
   const onSubmit = (formValues: Task) => {
-    createTask(formValues);
+    createTask(formValues, userId);
     setSelectedGoal("");
     reset();
   };
@@ -116,7 +118,7 @@ export default function CreateGoal({}: Props): ReactElement {
   };
 
   useEffect(() => {
-    getGoals().then((data) => {
+    getGoals(userId).then((data) => {
       setGoals(data);
     });
   }, []);

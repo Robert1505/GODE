@@ -8,14 +8,16 @@ namespace GODE.DataAccess.Entities
     {
         public User()
         {
-            GoalsCompleted = new List<Goal>();
-            TasksCompleted = new List<Mission>();
+            Goals = new List<Goal>();
+            Tasks= new List<Mission>();
             Achievements = new List<Achievement>();
+            ProgressOnDates = new List<ProgressOnDate>();
         }
         public Guid Id { get; set; }
         public string Username { get; set; }
-        public virtual IList<Goal> GoalsCompleted { get; set; }
-        public virtual IList<Mission> TasksCompleted { get; set; }
+        public virtual IList<Goal> Goals { get; set; }
+        public virtual IList<Mission> Tasks { get; set; }
         public virtual IList<Achievement> Achievements { get; set; }
+        public virtual IList<ProgressOnDate> ProgressOnDates { get; set; }
     }
 }

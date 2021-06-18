@@ -20,24 +20,24 @@ namespace GODE.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
-        public IActionResult CreateGoal(Goal goal)
+        [Route("create/{UserId}")]
+        public IActionResult CreateGoal(Goal goal, Guid UserId)
         {
-            return Ok(_goalManager.CreateGoal(goal));
+            return Ok(_goalManager.CreateGoal(UserId,goal));
         }
 
         [HttpGet]
-        [Route("get")]
-        public IActionResult GetGoals()
+        [Route("get/{UserId}")]
+        public IActionResult GetGoals(Guid UserId)
         {
-            return Ok(_goalManager.GetGoals());
+            return Ok(_goalManager.GetGoals(UserId));
         }
 
         [HttpGet]
-        [Route("goalsSolvedToday")]
-        public IActionResult GoalsSolved()
+        [Route("goalsSolvedToday/{UserId}")]
+        public IActionResult GoalsSolved(Guid UserId)
         {
-            return Ok(_goalManager.GoalsSolvedToday());
+            return Ok(_goalManager.GoalsSolvedToday(UserId));
         }
     }
 }

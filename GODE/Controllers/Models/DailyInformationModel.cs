@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GODE.Controllers.Models
 {
-    public class DailyInformationModel
+    public class ProgressInformationModel
     {
         public int GoalsCompleted { get; set; }
         public int TasksCompleted { get; set; }

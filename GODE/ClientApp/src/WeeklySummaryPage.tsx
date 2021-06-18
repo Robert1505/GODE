@@ -32,9 +32,7 @@ export default function WeeklySummary({}: Props): ReactElement {
 
     return (
         <div>
-            <div>
-                <NavMenu />
-            </div>
+            
             <div className = {classes.bgImage}>
                 <Title />
                 <Details />

@@ -24,9 +24,7 @@ export default function CreateGoalPage({}: Props): ReactElement {
 
   return (
     <div>
-      <div>
-        <NavMenu />
-      </div>
+      
       <div className={classes.bgImage}>
         <CreateGoal />
       </div>

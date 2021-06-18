@@ -48,7 +48,7 @@ export default function Page404({}: Props): ReactElement {
 
     return (
         <div>
-            <NavMenu />
+           
             <div className={classes.root} style = {{color: 'white'}}>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>

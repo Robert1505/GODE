@@ -56,84 +56,84 @@ namespace GODE.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("46b08ff1-6204-4dc6-a558-e647f5e7ead3"),
+                            Id = new Guid("dff07765-c746-47df-be05-79f3d34b54f3"),
                             Description = "Complete 100 tasks to reach this achievement!",
                             Index = 0,
                             Title = "100 TASKS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("f4924d90-e5f7-4bd3-9156-10c11a5f1813"),
+                            Id = new Guid("226dcd3c-62c7-4387-9188-a4b8efce5c64"),
                             Description = "Complete 500 tasks to reach this achievement!",
                             Index = 1,
                             Title = "500 TASKS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("82b05f85-3b05-48bd-8b30-2b8ebc4260c3"),
+                            Id = new Guid("7a6ad2b5-2645-4e57-84bc-f406b2ce2495"),
                             Description = "Complete 1000 tasks to reach this achievement!",
                             Index = 2,
                             Title = "1000 TASKS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("c3213c0b-2359-4141-bf73-1afc1d8f9952"),
+                            Id = new Guid("1172a7c5-a378-497f-8491-5c0f24d0bd9e"),
                             Description = "Complete 1500 tasks to reach this achievement!",
                             Index = 3,
                             Title = "1500 TASKS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("d2370dcf-1b01-4d71-86b6-5516473f16bd"),
+                            Id = new Guid("036e6e3a-4e40-4702-8d3d-93358b0df889"),
                             Description = "Complete 100 goals to reach this achievement!",
                             Index = 4,
                             Title = "100 GOALS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("c8d8d7a5-ea1c-4ec4-ba52-bf2fb6ccfd1e"),
+                            Id = new Guid("720e8878-a975-4aad-bcca-f977029ef535"),
                             Description = "Complete 350 goals to reach this achievement!",
                             Index = 5,
                             Title = "350 GOALS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("5a5779f5-bad9-4523-bf0e-949034a2c597"),
+                            Id = new Guid("2f50be65-170f-427d-8cd7-220914d96d06"),
                             Description = "Complete 700 goals to reach this achievement!",
                             Index = 6,
                             Title = "700 GOALS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("3a6122ce-08c6-495b-928b-c813823cf9e9"),
+                            Id = new Guid("c58ac02a-96f4-4649-8a6e-075c76cf37ca"),
                             Description = "Complete 1000 goals to reach this achievement!",
                             Index = 7,
                             Title = "1000 GOALS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("9b81dd62-3a1f-4ff3-8880-8668b377e534"),
+                            Id = new Guid("699c9ec5-e660-4465-882c-d684229b3c9c"),
                             Description = "Complete 150 important goals to reach this achievement!",
                             Index = 8,
                             Title = "150 IMPORTANT GOALS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("f6d50309-804e-411f-baa8-6a0868d4a6c9"),
+                            Id = new Guid("e06c8aba-735b-465a-a10d-ec57b7cad1a6"),
                             Description = "Earn 1000 minutes of progress to reach this achievement!",
                             Index = 9,
                             Title = "1000 MINUTES OF PROGRESS"
                         },
                         new
                         {
-                            Id = new Guid("bbcc7ce7-c474-4769-9119-928dd4e81c88"),
+                            Id = new Guid("8030c68a-fdad-4ada-b451-03715ccf0e2b"),
                             Description = "Complete 250 important goals to reach this achievement!",
                             Index = 10,
                             Title = "250 IMPORTANT GOALS COMPLETED"
                         },
                         new
                         {
-                            Id = new Guid("f81cd53b-584e-4446-abe9-2dda3bb1ef3a"),
+                            Id = new Guid("94855338-c063-417a-9b7e-2baa140cb65f"),
                             Description = "Earn 1500 minutes of progress to reach this achievement!",
                             Index = 11,
                             Title = "1500 MINUTES OF PROGRESS"
@@ -158,7 +158,12 @@ namespace GODE.DataAccess.Migrations
                     b.Property<string>("ShortDate")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Goals");
                 });
@@ -187,9 +192,14 @@ namespace GODE.DataAccess.Migrations
                     b.Property<string>("ShortDate")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GoalId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
                 });
@@ -209,7 +219,12 @@ namespace GODE.DataAccess.Migrations
                     b.Property<string>("ShortDate")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ProgressOnDates");
                 });
@@ -230,39 +245,9 @@ namespace GODE.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c20a1ddf-31ca-4c2d-97f7-9a7871315120"),
+                            Id = new Guid("76c28a3c-b29e-46a2-9397-53f24edf4230"),
                             Username = "Robert"
                         });
-                });
-
-            modelBuilder.Entity("GoalUser", b =>
-                {
-                    b.Property<Guid>("GoalsCompletedId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("GoalsCompletedId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("GoalUser");
-                });
-
-            modelBuilder.Entity("MissionUser", b =>
-                {
-                    b.Property<Guid>("TasksCompletedId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("TasksCompletedId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("MissionUser");
                 });
 
             modelBuilder.Entity("AchievementUser", b =>
@@ -280,6 +265,17 @@ namespace GODE.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("GODE.DataAccess.Entities.Goal", b =>
+                {
+                    b.HasOne("GODE.DataAccess.Entities.User", "User")
+                        .WithMany("Goals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GODE.DataAccess.Entities.Mission", b =>
                 {
                     b.HasOne("GODE.DataAccess.Entities.Goal", "Goal")
@@ -288,41 +284,35 @@ namespace GODE.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GODE.DataAccess.Entities.User", "User")
+                        .WithMany("Tasks")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Goal");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GoalUser", b =>
+            modelBuilder.Entity("GODE.DataAccess.Entities.ProgressOnDate", b =>
                 {
-                    b.HasOne("GODE.DataAccess.Entities.Goal", null)
-                        .WithMany()
-                        .HasForeignKey("GoalsCompletedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("GODE.DataAccess.Entities.User", "User")
+                        .WithMany("ProgressOnDates")
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("GODE.DataAccess.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MissionUser", b =>
-                {
-                    b.HasOne("GODE.DataAccess.Entities.Mission", null)
-                        .WithMany()
-                        .HasForeignKey("TasksCompletedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GODE.DataAccess.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GODE.DataAccess.Entities.Goal", b =>
                 {
+                    b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("GODE.DataAccess.Entities.User", b =>
+                {
+                    b.Navigation("Goals");
+
+                    b.Navigation("ProgressOnDates");
+
                     b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618

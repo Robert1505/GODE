@@ -8,9 +8,10 @@ namespace GODE.Business.Managers
 {
     public interface IGoalManager
     {
-        Goal CreateGoal(Goal goal);
-        List<Goal> GetGoals();
-        int GoalsSolvedToday();
+        Goal CreateGoal(Guid UserId, Goal goal);
+        List<Goal> GetGoals(Guid UserId);
+        int GoalsSolvedToday(Guid UserId);
+        int GoalsSolvedThisWeek(Guid UserId);
     }
     public class GoalManager : IGoalManager
     {
@@ -20,19 +21,24 @@ namespace GODE.Business.Managers
             _goalRepository = goalRepository;
         }
 
-        public Goal CreateGoal(Goal goal)
+        public Goal CreateGoal(Guid UserId, Goal goal)
         {
-            return _goalRepository.CreateGoal(goal);
+            return _goalRepository.CreateGoal(UserId,goal);
         }
 
-        public List<Goal> GetGoals()
+        public List<Goal> GetGoals(Guid UserId)
         {
-            return _goalRepository.GetGoals();
+            return _goalRepository.GetGoals( UserId);
         }
 
-        public int GoalsSolvedToday()
+        public int GoalsSolvedThisWeek(Guid UserId)
         {
-            return _goalRepository.GoalsSolvedToday();
+            return _goalRepository.GoalsSolvedThisWeek(UserId);
+        }
+
+        public int GoalsSolvedToday(Guid UserId)
+        {
+            return _goalRepository.GoalsSolvedToday( UserId);
         }
     }
 }

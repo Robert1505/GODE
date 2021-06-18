@@ -26,9 +26,7 @@ export default function AddProgressPage({}: Props): ReactElement {
 
     return (
         <div>
-            <div>
-                <NavMenu />
-            </div>
+            
             <div className = {classes.bgImage}>
                 <AddProgress />
             </div>

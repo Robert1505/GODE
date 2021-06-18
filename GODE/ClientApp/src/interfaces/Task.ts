@@ -1,5 +1,6 @@
-export interface Task {
-    id: string;
+import { IBaseEntity, IUserSpecific } from "./BaseEntity";
+
+export interface Task extends IUserSpecific {
     name: string;
     completed: boolean;
     estimatedTime: number;

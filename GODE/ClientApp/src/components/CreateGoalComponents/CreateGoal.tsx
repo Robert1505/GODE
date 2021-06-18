@@ -8,6 +8,7 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { blue } from "@material-ui/core/colors";
 import { Checkbox, CheckboxProps, FormControlLabel } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,8 +88,10 @@ export default function CreateGoal({}: Props): ReactElement {
     defaultValues,
   });
 
+  const user = useSelector((state : any) => state.user);
+
   const onSubmit = (formValues: Goal) => {
-    createGoal(formValues);
+    createGoal(formValues, user.id);
     reset();
   };
   
